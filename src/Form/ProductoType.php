@@ -3,19 +3,28 @@
 namespace App\Form;
 
 use App\Entity\Producto;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
+
+
 
 class ProductoType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nombre')
-            ->add('precio')
-            ->add('stock')
-            ->add('descripcion')
+            ->add('nombre',TextType::class,[])
+            ->add('precio',TextType::class,[])
+            ->add('stock' ,NumberType::class,[])
+            ->add('descripcion',TextareaType::class,[
+                'required'=>false])
+
+
         ;
     }
 

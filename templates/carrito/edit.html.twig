@@ -1,0 +1,13 @@
+{% extends 'base_theme.html.twig' %}
+
+{% block title %}Edit Carrito{% endblock %}
+
+{% block _main %}
+    <h1>Edit Carrito</h1>
+
+    {{ include('carrito/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_carrito_index') }}">back to list</a>
+
+    {{ include('carrito/_delete_form.html.twig') }}
+{% endblock %}

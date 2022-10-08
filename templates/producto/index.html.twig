@@ -1,8 +1,12 @@
-{% extends 'base.html.twig' %}
+{% extends 'base_theme.html.twig' %}
+{% import 'macro/action.html.twig' as action %}
 
 {% block title %}Producto index{% endblock %}
+{% block _main_footer %}
+    {{ action.btn_new(path('app_producto_new')) }}
+{% endblock %}
 
-{% block body %}
+{% block _main %}
     <h1>Producto index</h1>
 
     <table class="table">
@@ -24,10 +28,11 @@
                 <td>{{ producto.precio }}</td>
                 <td>{{ producto.stock }}</td>
                 <td>{{ producto.descripcion }}</td>
-                <td>
-                    <a href="{{ path('app_producto_show', {'id': producto.id}) }}">show</a>
-                    <a href="{{ path('app_producto_edit', {'id': producto.id}) }}">edit</a>
+                <td >
+                    {{ action.btn_show(path('app_producto_show', {'id': producto.id})) }}
+                    {{ action.btn_edit(path('app_producto_edit', {'id': producto.id})) }}
                 </td>
+
             </tr>
         {% else %}
             <tr>
@@ -37,5 +42,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_producto_new') }}">Create new</a>
+
 {% endblock %}

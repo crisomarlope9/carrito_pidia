@@ -1,0 +1,20 @@
+{% extends 'base_theme.html.twig' %}
+
+{% block title %}New Carrito{% endblock %}
+
+{% block _main %}
+    <h1>Create new Carrito</h1>
+
+    {{ include('carrito/_form.html.twig') }}
+
+    <a href="{{ path('app_carrito_index') }}">back to list</a>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/collection.js') }}"></script>
+    <script>
+        jQuery(document).ready(function() {
+            Collection.init('#carrito_detalles')
+        });
+    </script>
+{% endblock %}

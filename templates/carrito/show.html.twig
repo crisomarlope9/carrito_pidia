@@ -1,0 +1,26 @@
+{% extends 'base_theme.html.twig' %}
+
+{% block title %}Carrito{% endblock %}
+
+{% block _main %}
+    <h1>Carrito</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ carrito.id }}</td>
+            </tr>
+            <tr>
+                <th>PrecioTotal</th>
+                <td>{{ carrito.precioTotal }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_carrito_index') }}">back to list</a>
+
+    <a href="{{ path('app_carrito_edit', {'id': carrito.id}) }}">edit</a>
+
+    {{ include('carrito/_delete_form.html.twig') }}
+{% endblock %}

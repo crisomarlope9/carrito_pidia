@@ -1,0 +1,108 @@
+{% macro column(value, col = 2, class = '') -%}
+    {% import _self as action %}
+    <div class="row {{ class }}">
+        {% if col > 0 %}
+            <label class="col-form-label col-sm-{{ col }}" for="{{ value.vars.id }}">
+                {{ action.label(value) }}
+            </label>
+        {% endif %}
+        <div class="col-sm-{{ 12-col }}">
+            {{ form_widget(value) }}
+        </div>
+    </div>
+{%- endmacro %}
+
+{% macro column2(value1, value2=null, col = 6, class = '') -%}
+    <div class="row {{  class }}">
+        <div class="col-sm-{{ col }}">
+            {{ value1| raw }}
+        </div>
+        {% if value2 is not null %}
+            <div class="col-sm-{{ 12-col }}">
+                {{ value2| raw }}
+            </div>
+        {% endif %}
+    </div>
+{%- endmacro %}
+
+{% macro join(label,value1, value2, col=4) -%}
+    <div class="form-group row">
+        {{ label| raw }}
+        <div class="col-sm-{{ 12-col }}">
+            <div class="row">
+                <div class="col-6">{{ value1 | raw }}</div>
+                <div class="col-6">{{ value2 | raw }}</div>
+            </div>
+        </div>
+    </div>
+{%- endmacro %}
+
+{% macro join2(label,value1, value2, col=4) -%}
+    <div class="form-group row">
+        {{ label| raw }}
+        <div class="col-sm-{{ 12-col }}">
+            {{ value1 | raw }}
+            {{ value2 | raw }}
+        </div>
+    </div>
+{%- endmacro %}
+
+{% macro select(form) -%}
+    {{ form_row(form, {attr:{class:'js-select2'}}) }}
+{% endmacro %}
+
+{% macro button(button_label=null, button_class='primary', attributes = '') -%}
+    <button class="btn btn-{{ button_class }}" {{ attributes }}>{{ button_label|default('Guardar') }}</button>
+{%- endmacro %}
+
+{% macro label(form) -%}
+    {% set label = form.vars.label %}
+    {% if label is empty -%}
+        {%- if form.vars.label_format is not empty -%}
+            {% set label = form.vars.label_format|replace({
+                '%name%': form.vars.name,
+                '%id%': form.vars.id,
+            }) %}
+        {%- else -%}
+            {% set label = form.vars.name|humanize %}
+        {%- endif -%}
+    {%- endif -%}
+    {{ label }}
+{%- endmacro %}
+
+{% macro column_collection(value, num=4, class='', class_widget='', style='') %}
+    {% import _self as action %}
+    <div class="form-group row {{ class }}">
+        {% if num > 0 %}
+            <label class="col-form-label col-sm-{{ num }}" for="{{ value.vars.id }}">
+                {{ action.label(value) }}
+            </label>
+        {% endif %}
+        <div class="col-sm-{{ 12-num }}">
+            <ul id="{{ value.vars.id }}" class="list-group list-unstyled"
+                data-prototype="{{ form_widget(value.vars.prototype)|e('html_attr') }}"
+                    {% if value.vars.prototype.vars.name %} data-prototype-name="{{ value.vars.prototype.vars.name | e }}" {% endif %}
+                data-widget-tags="{{ '<li class="list-group-item"></li>'|e }}">
+                {% for item in value %}
+                    <li class="list-group-item collection-item" style="position: relative;">
+                        {{ form_errors(item) }}
+                        {{ form_widget(item, {attr: {class: '' ~ class_widget} }) }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+{% endmacro %}
+
+{% macro btn_show(url) %}
+    <a href="{{ url }}" class="btn btn-sm btn-light-primary" title="Mostrar"><i class="fa fa-eye"></i></a>
+{% endmacro %}
+
+{% macro btn_edit(url) %}
+    <a href="{{ url }}" class="btn btn-sm btn-light-warning" title="Editar"><i class="fa fa-pen"></i></a>
+{% endmacro %}
+
+{% macro btn_new(url) %}
+    <a href="{{ url }}" class="btn btn-sm btn-success" title="Nuevo"><i class="fa fa-plus"></i> Nuevo</a>
+{% endmacro %}
+

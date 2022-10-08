@@ -1,0 +1,8 @@
+{% import 'macro/action.html.twig' as action %}
+
+{{ form_start(form) }}
+    {{ form_row(form.precioTotal) }}
+{{ form_row(form.cliente) }}
+    {{ action.column_collection(form.detalles) }}
+<button class="btn btn-warning">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

@@ -1,0 +1,41 @@
+{% extends 'base_theme.html.twig' %}
+{% import 'macro/action.html.twig' as action %}
+
+{% block title %}Carrito index{% endblock %}
+{% block _main_header %}
+    <h1>Carrito</h1>
+{% endblock %}
+{% block _main_footer %}
+    {{ action.btn_new(path('app_carrito_new')) }}
+{% endblock %}
+{% block _main %}
+
+
+    <table class="table table-striped">
+        <thead>
+            <tr class="text-center text-uppercase">
+                <th >Id</th>
+                <th>PrecioTotal</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for carrito in carritos %}
+            <tr>
+                <td class="text-center">{{ carrito.id }}</td>
+                <td class="text-center">{{ carrito.precioTotal }}</td>
+                <td class="text-center">
+                    {{ action.btn_show(path('app_carrito_show', {'id': carrito.id})) }}
+                    {{ action.btn_edit(path('app_carrito_edit', {'id': carrito.id})) }}
+                    </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}

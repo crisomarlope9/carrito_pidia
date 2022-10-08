@@ -25,6 +25,11 @@ class Producto
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $descripcion = null;
+    public function __construct()
+    {
+        //$this->stock='0';
+    }
+
 
     public function getId(): ?int
     {
@@ -78,4 +83,9 @@ class Producto
 
         return $this;
     }
+    public function __toString(): string
+    {
+        return $this->getNombre();
+    }
+
 }
