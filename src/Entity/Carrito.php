@@ -26,10 +26,19 @@ class Carrito
     #[ORM\JoinColumn(nullable: false)]
     private ?Cliente $cliente = null;
 
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $fecha = null;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Orden $orden = null;
+
+
+
     
 
     public function __construct()
     {
+        $this->fecha=new \DateTime();
         $this->detalles = new ArrayCollection();
     }
 
@@ -93,6 +102,32 @@ class Carrito
 
         return $this;
     }
+
+    public function getFecha(): ?\DateTimeInterface
+    {
+        return $this->fecha;
+    }
+
+    public function setFecha(\DateTimeInterface $fecha): self
+    {
+        $this->fecha = $fecha;
+
+        return $this;
+    }
+
+    public function getOrden(): ?Orden
+    {
+        return $this->orden;
+    }
+
+    public function setOrden(?Orden $orden): self
+    {
+        $this->orden = $orden;
+
+        return $this;
+    }
+
+    
 
 
 

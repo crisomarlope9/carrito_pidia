@@ -2,7 +2,7 @@
 
 
 {{ form_start(form) }}
-
+     {{ form_row(form.fecha) }}
     {{ form_row(form.cliente) }}
     {{ action.column_collection(form.detalles) }}
 <button class="btn btn-light-danger">{{ button_label|default('Guardar ') }}<i class="bi bi-bookmark-check"></i></button>

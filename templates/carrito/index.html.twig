@@ -15,6 +15,7 @@
         <thead>
             <tr class="text-center text-uppercase">
                 <th >Id</th>
+                <th>Fecha</th>
                 <th>Cliente</th>
                 <th>PrecioTotal</th>
                 <th>Detalle</th>
@@ -24,18 +25,23 @@
         <tbody>
         {% for carrito in carritos %}
             <tr>
-                <td class="text-center">{{ carrito.id }}</td>
+                <td>{{ carrito.id }}</td>
+                <td>{{ carrito.fecha | date('d-M-Y') }}</td>
                 <td class="text-uppercase">{{ carrito.cliente }}</td>
+                <td class="text-center">{{ carrito.precioTotal }}</td>
                 <td>
                     {% for detalle in carrito.detalles %}
                         {{ detalle.producto }} => {{ detalle.cantidad }} <br>
                     {% endfor %}
                 </td>
-                <td class="text-center">{{ carrito.precioTotal }}</td>
                 <td class="text-center">
                     {{ action.btn_show(path('app_carrito_show', {'id': carrito.id})) }}
-                    {{ action.btn_edit(path('app_carrito_edit', {'id': carrito.id})) }}
-                    </td>
+                    {% if carrito.orden is null %}
+                        {{ action.btn_edit(path('app_carrito_edit', {'id': carrito.id})) }}
+                    {% endif %}
+                    <a href="{{ path('app_orden_carrito', {id: carrito.id}) }}"
+                       class="btn btn-sm btn-light-info"><i class="fa fa-cart-plus"></i> </a>
+                </td>
             </tr>
         {% else %}
             <tr>

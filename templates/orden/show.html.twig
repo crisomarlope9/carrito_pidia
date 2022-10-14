@@ -1,0 +1,43 @@
+{% extends 'base_theme.html.twig' %}
+
+{% import 'macro/action.html.twig' as action %}
+
+{% block title %}Orden{% endblock %}
+
+{% block _main %}
+    <h1>Orden</h1>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ orden.id }}</td>
+        </tr>
+        <tr>
+            <th>Fecha</th>
+            <td>{{ orden.fecha ? orden.fecha|date('Y-m-d') : '' }}</td>
+        </tr>
+        <tr>
+            <th>Cliente</th>
+            <td>{{ orden.cliente }}</td>
+        </tr>
+        <tr>
+            <th>PrecioTotal</th>
+            <td>{{ orden.precioTotal }}</td>
+        </tr>
+        <tr>
+            <th>Detalles</th>
+            <td>{% for detalle in orden.detalles %}
+                    {{ detalle.producto }} => {{ detalle.cantidad }} <br>
+                {% endfor %}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    {{ action.btn_regresar(path('app_orden_index')) }}
+
+    {#    <a href="{{ path('app_orden_edit', {'id': orden.id}) }}">edit</a>#}
+
+    {#    {{ include('orden/_delete_form.html.twig') }}#}
+{% endblock %}

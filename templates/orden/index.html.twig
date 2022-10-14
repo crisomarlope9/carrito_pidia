@@ -1,0 +1,38 @@
+{% extends 'base_theme.html.twig' %}
+{% import 'macro/action.html.twig' as action %}
+
+{% block title %}Orden index{% endblock %}
+
+{% block _main %}
+    <h1>Orden index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fecha</th>
+                <th>PrecioTotal</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for orden in ordens %}
+            <tr>
+                <td>{{ orden.id }}</td>
+                <td>{{ orden.fecha ? orden.fecha|date('Y-m-d') : '' }}</td>
+                <td>{{ orden.precioTotal }}</td>
+                <td>
+                    <a href="{{ path('app_orden_show', {'id': orden.id}) }}">show</a>
+                    <a href="{{ path('app_orden_edit', {'id': orden.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+{% endblock %}
