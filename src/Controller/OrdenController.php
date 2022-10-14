@@ -8,6 +8,7 @@ use App\Form\OrdenType;
 use App\Repository\CarritoRepository;
 use App\Repository\OrdenRepository;
 use App\Service\Orden\ClonarCarritoOrden;
+use App\Service\Producto\StockProducto;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -70,13 +71,20 @@ class OrdenController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_orden_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Orden $orden, OrdenRepository $ordenRepository): Response
+    public function edit(Request $request, Orden $orden, OrdenRepository $ordenRepository, StockProducto $stockProducto): Response
     {
         $form = $this->createForm(OrdenType::class, $orden);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            //verificar stock
+            if(false === $stockProducto->verificarOrden($orden)){
+                return $this->redirectToRoute('app_orden_edit', ['id' => $orden->getId()], Response::HTTP_SEE_OTHER);
+            }
             $ordenRepository->save($orden, true);
+            //moficar stock
+            $stockProducto->actualizarProducto($orden);
+
 
             return $this->redirectToRoute('app_orden_index', [], Response::HTTP_SEE_OTHER);
         }
