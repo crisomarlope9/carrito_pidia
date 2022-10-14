@@ -29,6 +29,9 @@ class Orden
     #[ORM\OneToMany(mappedBy: 'orden', targetEntity: OrdenDetalle::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
     private Collection $detalles;
 
+    #[ORM\Column(length: 6, nullable: true)]
+    private ?string $metodoPago = null;
+
     public function __construct()
     {
         $this->detalles = new ArrayCollection();
@@ -101,6 +104,18 @@ class Orden
                 $detalle->setOrden(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getMetodoPago(): ?string
+    {
+        return $this->metodoPago;
+    }
+
+    public function setMetodoPago(?string $metodoPago): self
+    {
+        $this->metodoPago = $metodoPago;
 
         return $this;
     }

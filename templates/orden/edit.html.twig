@@ -19,7 +19,9 @@
     <script src="{{ asset('js/collection.js') }}"></script>
     <script>
         jQuery(document).ready(function() {
-            Collection.init('#orden_detalles')
+           // Collection.init('#orden_detalles')
+            $('#orden_precioTotal').prop('readOnly',true);
         });
+
     </script>
 {% endblock %}

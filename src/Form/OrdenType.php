@@ -6,6 +6,7 @@ use App\Entity\CarritoDetalle;
 use App\Entity\Orden;
 use App\Entity\OrdenDetalle;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -29,6 +30,13 @@ class OrdenType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false,
             ])
+            ->add('metodoPago',ChoiceType::class,[
+                'choices'=>[
+                    'Credito'=>'CREDIT',
+                    'Efectivo'=>'CONTAD',
+                ]
+            ])
+
         ;
     }
 
