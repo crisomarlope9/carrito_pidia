@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Service\Carrito\CalcularPrecioTotalCarrito;
 
 #[Route('/carrito')]
 class CarritoController extends AbstractController
@@ -22,13 +23,14 @@ class CarritoController extends AbstractController
     }
 
     #[Route('/new', name: 'app_carrito_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, CarritoRepository $carritoRepository): Response
+    public function new(Request $request, CarritoRepository $carritoRepository, CalcularPrecioTotalCarrito $totalCarrito,): Response
     {
         $carrito = new Carrito();
         $form = $this->createForm(CarritoType::class, $carrito);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $totalCarrito->execute($carrito);
             $carritoRepository->save($carrito, true);
 
             return $this->redirectToRoute('app_carrito_index', [], Response::HTTP_SEE_OTHER);
@@ -49,12 +51,13 @@ class CarritoController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_carrito_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Carrito $carrito, CarritoRepository $carritoRepository): Response
+    public function edit(Request $request, Carrito $carrito, CarritoRepository $carritoRepository,   CalcularPrecioTotalCarrito $totalCarrito,): Response
     {
         $form = $this->createForm(CarritoType::class, $carrito);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $totalCarrito->execute($carrito);
             $carritoRepository->save($carrito, true);
 
             return $this->redirectToRoute('app_carrito_index', [], Response::HTTP_SEE_OTHER);

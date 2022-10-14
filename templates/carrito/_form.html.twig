@@ -1,8 +1,10 @@
 {% import 'macro/action.html.twig' as action %}
 
+
 {{ form_start(form) }}
-    {{ form_row(form.precioTotal) }}
-{{ form_row(form.cliente) }}
+
+    {{ form_row(form.cliente) }}
     {{ action.column_collection(form.detalles) }}
-<button class="btn btn-warning">{{ button_label|default('Save') }}</button>
+<button class="btn btn-light-danger">{{ button_label|default('Guardar ') }}<i class="bi bi-bookmark-check"></i></button>
+
 {{ form_end(form) }}

@@ -1,4 +1,5 @@
 {% extends 'base_theme.html.twig' %}
+{% import 'macro/action.html.twig' as action %}
 
 {% block title %}New Carrito{% endblock %}
 
@@ -7,7 +8,7 @@
 
     {{ include('carrito/_form.html.twig') }}
 
-    <a href="{{ path('app_carrito_index') }}">back to list</a>
+    {{ action.btn_regresar(path('app_carrito_index')) }}
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}

@@ -1,11 +1,16 @@
 {% extends 'base_theme.html.twig' %}
+{% import 'macro/action.html.twig' as action %}
 
 {% block title %}New Cliente{% endblock %}
 
-{% block body %}
+{% block _main %}
     <h1>Create new Cliente</h1>
 
     {{ include('cliente/_form.html.twig') }}
 
-    <a href="{{ path('app_cliente_index') }}">back to list</a>
+    {{ action.btn_regresar(path('app_cliente_index')) }}
 {% endblock %}
+
+
+
+

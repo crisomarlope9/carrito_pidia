@@ -15,7 +15,7 @@ class CarritoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('precioTotal')
+
             ->add('cliente')
             ->add('detalles',CollectionType::class, [
                 'required' => true,

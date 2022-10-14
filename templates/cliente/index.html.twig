@@ -1,9 +1,15 @@
 {% extends 'base_theme.html.twig' %}
+{% import 'macro/action.html.twig' as action %}
+
 
 {% block title %}Cliente index{% endblock %}
 
-{% block body %}
-    <h1>Cliente index</h1>
+{% block _main_footer %}
+    {{ action.btn_new(path('app_cliente_new')) }}
+{% endblock %}
+
+{% block _main %}
+    <h1>Cliente </h1>
 
     <table class="table">
         <thead>
@@ -13,9 +19,6 @@
                 <th>Nombre</th>
                 <th>Apellido</th>
                 <th>Dni</th>
-                <th>Telefono</th>
-                <th>Correo</th>
-                <th>Direccion</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -27,12 +30,10 @@
                 <td>{{ cliente.Nombre }}</td>
                 <td>{{ cliente.Apellido }}</td>
                 <td>{{ cliente.Dni }}</td>
-                <td>{{ cliente.Telefono }}</td>
-                <td>{{ cliente.Correo }}</td>
-                <td>{{ cliente.Direccion }}</td>
+
                 <td>
-                    <a href="{{ path('app_cliente_show', {'id': cliente.id}) }}">show</a>
-                    <a href="{{ path('app_cliente_edit', {'id': cliente.id}) }}">edit</a>
+                    {{ action.btn_show(path('app_cliente_show', {'id': cliente.id})) }}
+                    {{ action.btn_edit(path('app_cliente_edit', {'id': cliente.id})) }}
                 </td>
             </tr>
         {% else %}
@@ -43,5 +44,5 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_cliente_new') }}">Create new</a>
+
 {% endblock %}

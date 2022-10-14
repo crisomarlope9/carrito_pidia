@@ -15,7 +15,9 @@
         <thead>
             <tr class="text-center text-uppercase">
                 <th >Id</th>
+                <th>Cliente</th>
                 <th>PrecioTotal</th>
+                <th>Detalle</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -23,6 +25,12 @@
         {% for carrito in carritos %}
             <tr>
                 <td class="text-center">{{ carrito.id }}</td>
+                <td class="text-uppercase">{{ carrito.cliente }}</td>
+                <td>
+                    {% for detalle in carrito.detalles %}
+                        {{ detalle.producto }} => {{ detalle.cantidad }} <br>
+                    {% endfor %}
+                </td>
                 <td class="text-center">{{ carrito.precioTotal }}</td>
                 <td class="text-center">
                     {{ action.btn_show(path('app_carrito_show', {'id': carrito.id})) }}
