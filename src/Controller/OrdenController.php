@@ -61,8 +61,15 @@ class OrdenController extends AbstractController
         Carrito $carrito,
         OrdenRepository $ordenRepository,
         ClonarCarritoOrden $clonarCarritoOrden,
+        StockProducto $stockProducto,
         CarritoRepository $carritoRepository,
     ): Response {
+        if(false === $stockProducto->verificarCarrito($carrito)){
+            $text=$stockProducto->obtenerStockCarrito($carrito);
+            $this->addFlash('warning','No hay stock en los productos seleccionados: '.$text);
+
+            return $this->redirectToRoute('app_carrito_edit',['id'=>$carrito->getId()],Response::HTTP_SEE_OTHER);
+        }
         $orden = $carrito->getOrden();
         if (null === $orden) {
             $orden = new Orden();

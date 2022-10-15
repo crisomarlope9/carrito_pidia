@@ -41,11 +41,17 @@ class CarritoController extends AbstractController
             'form' => $form,
         ]);
     }
-
     #[Route('/{id}', name: 'app_carrito_show', methods: ['GET'])]
     public function show(Carrito $carrito): Response
     {
         return $this->render('carrito/show.html.twig', [
+            'carrito' => $carrito,
+        ]);
+    }
+    #[Route('/{id}/print', name: 'app_carrito_print', methods: ['GET'])]
+    public function print(Carrito $carrito): Response
+    {
+        return $this->render('carrito/print.html.twig', [
             'carrito' => $carrito,
         ]);
     }

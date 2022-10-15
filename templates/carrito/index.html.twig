@@ -43,6 +43,10 @@
                     <a href="{{ path('app_orden_carrito', {id: carrito.id}) }}"
                        class="btn btn-sm btn-light-info"><i class="fa fa-cart-plus"></i> </a>
                     {% endif %}
+                    {% if carrito.pagado==true %}
+                        <a href="{{ path('app_carrito_print', {id: carrito.id}) }}"
+                           class="btn btn-sm btn-light-primary"><i class="fa fa-print"></i> </a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}

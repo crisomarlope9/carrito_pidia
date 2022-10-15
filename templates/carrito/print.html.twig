@@ -1,0 +1,64 @@
+{% extends 'base_theme.html.twig' %}
+{% import 'macro/action.html.twig' as action %}
+{% block title %}Imprimir{% endblock %}
+
+{% block _main %}
+    <table class="table d-none d-print-table">
+        <tr>
+            <td>
+                <img alt="Logo" src="https://symfony.com/logos/symfony_black_03.png" class="h-40px h-lg-40px">
+            </td>
+            <td class="text-center">
+                <h3>EMPRESA COMESTIBLES SAC</h3>
+                <h5>RUC: 2034567890</h5>
+            </td>
+            <td>
+                {{ 'now'|date('d-m-Y') }}
+            </td>
+        </tr>
+    </table>
+
+
+    <table class="table ">
+        <tbody>
+        <tr>
+            <th>Cliente</th>
+            <td>{{ carrito.cliente }}</td>
+        </tr>
+        <tr>
+            <th>PrecioTotal</th>
+            <td>{{ carrito.precioTotal }}</td>
+        </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for detalle in carrito.detalles %}
+            <tr>
+                <th>{{detalle.producto}}</th>
+                <th>{{ detalle.cantidad }}</th>
+                <th>{{ detalle.producto.precio }}</th>
+                <th>{{ detalle.cantidad*detalle.producto.precio }}</th>
+
+            </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="3">TOTAL</td>
+            <td>{{ carrito.precioTotal }}</td>
+        </tr>
+        </tbody>
+
+    </table>
+
+
+{% endblock %}
