@@ -39,8 +39,10 @@
                     {% if carrito.orden is null %}
                         {{ action.btn_edit(path('app_carrito_edit', {'id': carrito.id})) }}
                     {% endif %}
+                    {% if carrito.pagado==false %}
                     <a href="{{ path('app_orden_carrito', {id: carrito.id}) }}"
                        class="btn btn-sm btn-light-info"><i class="fa fa-cart-plus"></i> </a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}

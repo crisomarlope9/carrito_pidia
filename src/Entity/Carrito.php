@@ -32,6 +32,9 @@ class Carrito
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?Orden $orden = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $pagado = null;
+
 
 
     
@@ -123,6 +126,18 @@ class Carrito
     public function setOrden(?Orden $orden): self
     {
         $this->orden = $orden;
+
+        return $this;
+    }
+
+    public function isPagado(): ?bool
+    {
+        return $this->pagado;
+    }
+
+    public function setPagado(?bool $pagado): self
+    {
+        $this->pagado = $pagado;
 
         return $this;
     }

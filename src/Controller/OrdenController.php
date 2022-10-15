@@ -9,10 +9,14 @@ use App\Repository\CarritoRepository;
 use App\Repository\OrdenRepository;
 use App\Service\Orden\ClonarCarritoOrden;
 use App\Service\Producto\StockProducto;
+use App\Service\Carrito\EstadoPagadoCarrito;
+use mysql_xdevapi\Warning;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+
+
 
 #[Route('/orden')]
 class OrdenController extends AbstractController
@@ -71,7 +75,12 @@ class OrdenController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_orden_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Orden $orden, OrdenRepository $ordenRepository, StockProducto $stockProducto): Response
+    public function edit(Request $request,
+                         Orden $orden,
+                         OrdenRepository $ordenRepository,
+                         StockProducto $stockProducto,
+                         EstadoPagadoCarrito $pagadoCarrito,
+    ): Response
     {
         $form = $this->createForm(OrdenType::class, $orden);
         $form->handleRequest($request);
@@ -79,11 +88,15 @@ class OrdenController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             //verificar stock
             if(false === $stockProducto->verificarOrden($orden)){
+                $this->addFlash('warning','No hay stock disponible');
                 return $this->redirectToRoute('app_orden_edit', ['id' => $orden->getId()], Response::HTTP_SEE_OTHER);
+
             }
             $ordenRepository->save($orden, true);
             //moficar stock
             $stockProducto->actualizarProducto($orden);
+            $pagadoCarrito->pagadoOrden($orden);
+
 
 
             return $this->redirectToRoute('app_orden_index', [], Response::HTTP_SEE_OTHER);
