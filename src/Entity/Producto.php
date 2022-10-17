@@ -3,6 +3,9 @@
 namespace App\Entity;
 
 use App\Repository\ProductoRepository;
+use CarlosChininin\FileUpload\Model\FileUpload;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -25,9 +28,24 @@ class Producto
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $descripcion = null;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'],orphanRemoval:true)]
+    private ?FileUpload $foto = null;
+
+
+    #[ORM\ManyToMany(targetEntity: FileUpload::class,cascade: ['persist', 'remove'],orphanRemoval:true)]
+    private Collection $imagenes;
+
+    #[ORM\ManyToOne]
+    private ?Marca $marca = null;
+
+    #[ORM\ManyToOne]
+    private ?Categoria $categoria = null;
     public function __construct()
     {
         //$this->stock='0';
+        $this->imagenes = new ArrayCollection();
+
     }
 
 
@@ -86,6 +104,66 @@ class Producto
     public function __toString(): string
     {
         return $this->getNombre();
+    }
+
+    public function getFoto(): ?FileUpload
+    {
+        return $this->foto;
+    }
+
+    public function setFoto(?FileUpload $foto): self
+    {
+        $this->foto = $foto;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, FileUpload>
+     */
+    public function getImagenes(): Collection
+    {
+        return $this->imagenes;
+    }
+
+    public function addImagene(FileUpload $imagene): self
+    {
+        if (!$this->imagenes->contains($imagene)) {
+            $this->imagenes->add($imagene);
+        }
+
+        return $this;
+    }
+
+    public function removeImagene(FileUpload $imagene): self
+    {
+        $this->imagenes->removeElement($imagene);
+
+        return $this;
+    }
+
+    public function getMarca(): ?Marca
+    {
+        return $this->marca;
+    }
+
+    public function setMarca(?Marca $marca): self
+    {
+        $this->marca = $marca;
+
+        return $this;
+    }
+
+    public function getCategoria(): ?Categoria
+    {
+        return $this->categoria;
+    }
+
+    public function setCategoria(?Categoria $categoria): self
+    {
+        $this->categoria = $categoria;
+
+        return $this;
     }
 
 }

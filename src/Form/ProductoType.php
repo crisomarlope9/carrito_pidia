@@ -2,7 +2,11 @@
 
 namespace App\Form;
 
+use App\Entity\CarritoDetalle;
 use App\Entity\Producto;
+use CarlosChininin\FileUpload\Form\ImageFileUploadFormType;
+use CarlosChininin\FileUpload\Model\FileUpload;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -19,10 +23,23 @@ class ProductoType extends AbstractType
     {
         $builder
             ->add('nombre',TextType::class,[])
+            ->add('categoria',TextType::class,[])
+            ->add('marca',TextType::class,[])
             ->add('precio',TextType::class,[])
             ->add('stock' ,NumberType::class,[])
             ->add('descripcion',TextareaType::class,[
                 'required'=>false])
+            ->add('foto',ImageFileUploadFormType::class,[
+                'required'=>false])
+            ->add('imagenes',CollectionType::class, [
+                'required' => false,
+                'entry_type' => ImageFileUploadFormType::class,
+                'prototype_data' => new FileUpload(),
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+
+            ])
 
 
         ;

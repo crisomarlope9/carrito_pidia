@@ -1,6 +1,26 @@
 {% import 'macro/action.html.twig' as action %}
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+    {{ form_row(form.nombre) }}
+    {{  form_row(form.categoria) }}
+    {{ form_row(form.marca) }}
+    {{ form_row(form.precio) }}
+    {{ form_row(form.stock) }}
+    {{ form_row(form.descripcion) }}
+    {% if producto.foto %}
+        <div class="">
+            <img src="{{ producto.foto|file_upload_webpath }}" alt="Foto" height="75px">
+        </div>
+    {% endif %}
+    {{ form_row(form.foto) }}
+    {% if producto.imagenes %}
+       {% for imagen in producto.imagenes %}
+           <img src="{{ imagen|file_upload_webpath }}" alt="Foto" height="75px">
+       {% endfor %}
+
+
+    {% endif %}
+    {{ action.column_collection(form.imagenes) }}
+
     <button class="btn btn-light-danger">{{ button_label|default('Guardar ') }}<i class="bi bi-bookmark-check"></i></button>
 
 {{ form_end(form) }}

@@ -35,6 +35,8 @@ class Cliente
     #[ORM\Column(length: 100)]
     private ?string $Direccion = null;
 
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -127,4 +129,6 @@ class Cliente
     {
         return $this->getNombre().' '.$this->getApellido();
     }
+
+
 }

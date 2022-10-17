@@ -28,6 +28,25 @@
                 <th>Descripcion</th>
                 <td>{{ producto.descripcion }}</td>
             </tr>
+            <tr>
+                <th>Foto</th>
+                <td>
+                    <img src="{{ producto.foto|file_upload_webpath }}" alt="Foto" height="75px">
+                </td>
+            </tr>
+            <tr>
+                <th>Imagenes</th>
+                <td>
+                    {% if producto.imagenes %}
+                    {% for imagen in producto.imagenes %}
+                        <img src="{{ imagen|file_upload_webpath }}" alt="Foto" height="75px">
+                    {% endfor %}
+                </td>
+            </tr>
+
+
+
+            {% endif %}
         </tbody>
     </table>
 

@@ -12,3 +12,12 @@
 
     {{ include('carrito/_delete_form.html.twig') }}
 {% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/collection.js') }}"></script>
+    <script>
+        jQuery(document).ready(function() {
+            Collection.init('#carrito_detalles')
+        });
+    </script>
+{% endblock %}

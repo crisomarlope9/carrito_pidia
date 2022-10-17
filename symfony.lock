@@ -1,4 +1,7 @@
 {
+    "carloschininin/file-upload-bundle": {
+        "version": "dev-main"
+    },
     "doctrine/annotations": {
         "version": "1.13",
         "recipe": {

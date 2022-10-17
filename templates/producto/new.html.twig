@@ -12,3 +12,13 @@
 
 
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/collection.js') }}"></script>
+    <script>
+        jQuery(document).ready(function() {
+            Collection.init('#producto_imagenes')
+        });
+    </script>
+{% endblock %}

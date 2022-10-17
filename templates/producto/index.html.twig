@@ -13,6 +13,7 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Foto</th>
                 <th>Nombre</th>
                 <th>Precio</th>
                 <th>Stock</th>
@@ -24,6 +25,14 @@
         {% for producto in productos %}
             <tr>
                 <td>{{ producto.id }}</td>
+                <td>
+                    {% if producto.foto %}
+                        <a href="{{ producto.foto|file_upload_webpath }}" target="_blank">
+                            <img src="{{ producto.foto|file_upload_webpath }}"alt="Foto" height="40px">
+                        </a>
+
+                    {% endif %}
+                </td>
                 <td>{{ producto.nombre }}</td>
                 <td>{{ producto.precio }}</td>
                 <td>{{ producto.stock }}</td>

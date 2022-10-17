@@ -4,8 +4,54 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ba2ca3afb415744934a335161413cd1f",
+    "content-hash": "b1a231355d66a5d16135b6faa67e6bdd",
     "packages": [
+        {
+            "name": "carloschininin/file-upload-bundle",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/carloschininin/file-upload-bundle.git",
+                "reference": "73ad9d3fc120ff416eaffa4ebccdb7737e69cac3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/carloschininin/file-upload-bundle/zipball/73ad9d3fc120ff416eaffa4ebccdb7737e69cac3",
+                "reference": "73ad9d3fc120ff416eaffa4ebccdb7737e69cac3",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/dbal": "^3.3",
+                "doctrine/doctrine-bundle": "^2.6",
+                "doctrine/orm": "^2.11",
+                "php": ">=8.1",
+                "symfony/cache": "^6.0",
+                "symfony/form": "^6.0",
+                "symfony/http-foundation": "^6.0",
+                "symfony/http-kernel": "^6.0",
+                "twig/twig": "^3.3"
+            },
+            "default-branch": true,
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "CarlosChininin\\FileUpload\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Carlos Chininin",
+                    "email": "carloschininin@gmail.com"
+                }
+            ],
+            "description": "Upload files",
+            "support": {
+                "issues": "https://github.com/carloschininin/file-upload-bundle/issues",
+                "source": "https://github.com/carloschininin/file-upload-bundle/tree/main"
+            },
+            "time": "2022-05-29T06:05:38+00:00"
+        },
         {
             "name": "doctrine/annotations",
             "version": "1.13.3",
@@ -9715,7 +9761,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "carloschininin/file-upload-bundle": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
