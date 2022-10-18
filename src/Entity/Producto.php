@@ -37,10 +37,14 @@ class Producto
     private Collection $imagenes;
 
     #[ORM\ManyToOne]
-    private ?Marca $marca = null;
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Categoria $categoria = null;
 
     #[ORM\ManyToOne]
-    private ?Categoria $categoria = null;
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Marca $marca = null;
+
+
     public function __construct()
     {
         //$this->stock='0';
@@ -142,28 +146,39 @@ class Producto
         return $this;
     }
 
-    public function getMarca(): ?Marca
-    {
-        return $this->marca;
-    }
-
-    public function setMarca(?Marca $marca): self
-    {
-        $this->marca = $marca;
-
-        return $this;
-    }
-
+    /**
+     * @return Categoria|null
+     */
     public function getCategoria(): ?Categoria
     {
         return $this->categoria;
     }
 
-    public function setCategoria(?Categoria $categoria): self
+    /**
+     * @param Categoria|null $categoria
+     */
+    public function setCategoria(?Categoria $categoria): void
     {
         $this->categoria = $categoria;
-
-        return $this;
     }
+
+    /**
+     * @return Marca|null
+     */
+    public function getMarca(): ?Marca
+    {
+        return $this->marca;
+    }
+
+    /**
+     * @param Marca|null $marca
+     */
+    public function setMarca(?Marca $marca): void
+    {
+        $this->marca = $marca;
+    }
+
+
+
 
 }

@@ -1,5 +1,5 @@
 {% set _theme = 'https://cdn.sisprocoffee.com/marfury/v2/' %}
-<!-- headers-->
+
 <!-- headers-->
 <!DOCTYPE html>
 <html lang="en">
@@ -60,7 +60,7 @@
     </div>
     <div class="header__content">
         <div class="container">
-            <div class="header__content-left"><a class="ps-logo" href="index.html"><img src="img/logo-technology.png" alt=""></a>
+            <div class="header__content-left"><a class="ps-logo" href="index.html"><img src="{{ asset(_theme~'img/logo-technology.png') }}" alt=""></a>
                 <div class="menu--product-categories">
                     <div class="menu__toggle"><i class="icon-menu"></i></div>
                     <div class="menu__content">
@@ -105,13 +105,13 @@
                         <div class="ps-cart__content">
                             <div class="ps-cart__items">
                                 <div class="ps-product--cart-mobile">
-                                    <div class="ps-product__thumbnail"><a href="#"><img src="img/products/clothing/7.jpg" alt=""></a></div>
+                                    <div class="ps-product__thumbnail"><a href="#"><img src="{{ asset(_theme~'img/products/clothing/7.jpg') }}" alt=""></a></div>
                                     <div class="ps-product__content"><a class="ps-product__remove" href="#"><i class="icon-cross"></i></a><a href="product-default.html">MVMTH Classical Leather Watch In Black</a>
                                         <p><strong>Sold by:</strong> YOUNG SHOP</p><small>1 x $59.99</small>
                                     </div>
                                 </div>
                                 <div class="ps-product--cart-mobile">
-                                    <div class="ps-product__thumbnail"><a href="#"><img src="img/products/clothing/5.jpg" alt=""></a></div>
+                                    <div class="ps-product__thumbnail"><a href="#"><img src="{{ asset(_theme~'img/products/clothing/5.jpg') }}" alt=""></a></div>
                                     <div class="ps-product__content"><a class="ps-product__remove" href="#"><i class="icon-cross"></i></a><a href="product-default.html">Sleeve Linen Blend Caro Pane Shirt</a>
                                         <p><strong>Sold by:</strong> YOUNG SHOP</p><small>1 x $59.99</small>
                                     </div>
@@ -169,32 +169,24 @@
                         </ul>
                     </div>
                 </li>
-                <li>
-                    <div class="ps-dropdown language"><a href="#"><img src="img/flag/en.png" alt="" />English</a>
-                        <ul class="ps-dropdown-menu">
-                            <li><a href="#"><img src="img/flag/germany.png" alt="" /> Germany</a></li>
-                            <li><a href="#"><img src="img/flag/fr.png" alt="" /> France</a></li>
-                        </ul>
-                    </div>
-                </li>
             </ul>
         </div>
     </div>
     <div class="navigation--mobile">
-        <div class="navigation__left"><a class="ps-logo" href="index.html"><img src="img/logo-technology.png" alt="" /></a></div>
+        <div class="navigation__left"><a class="ps-logo" href="index.html"><img src="{{ asset(_theme~'img/logo-technology.png') }}" alt="" /></a></div>
         <div class="navigation__right">
             <div class="header__actions">
                 <div class="ps-cart--mini"><a class="header__extra" href="#"><i class="icon-bag2"></i><span><i>0</i></span></a>
                     <div class="ps-cart__content">
                         <div class="ps-cart__items">
                             <div class="ps-product--cart-mobile">
-                                <div class="ps-product__thumbnail"><a href="#"><img src="img/products/clothing/7.jpg" alt="" /></a></div>
+                                <div class="ps-product__thumbnail"><a href="#"><img src="{{ asset(_theme~'img/products/clothing/7.jpg') }}" alt="" /></a></div>
                                 <div class="ps-product__content"><a class="ps-product__remove" href="#"><i class="icon-cross"></i></a><a href="product-default.html">MVMTH Classical Leather Watch In Black</a>
                                     <p><strong>Sold by:</strong> YOUNG SHOP</p><small>1 x $59.99</small>
                                 </div>
                             </div>
                             <div class="ps-product--cart-mobile">
-                                <div class="ps-product__thumbnail"><a href="#"><img src="img/products/clothing/5.jpg" alt="" /></a></div>
+                                <div class="ps-product__thumbnail"><a href="#"><img src="{{ asset(_theme~'img/products/clothing/5.jpg') }}" alt="" /></a></div>
                                 <div class="ps-product__content"><a class="ps-product__remove" href="#"><i class="icon-cross"></i></a><a href="product-default.html">Sleeve Linen Blend Caro Pane Shirt</a>
                                     <p><strong>Sold by:</strong> YOUNG SHOP</p><small>1 x $59.99</small>
                                 </div>
@@ -225,8 +217,7 @@
 <div id="homepage-10">
     {% block _main %}
 
-    {% endblock %}
-
+    {% endblock _main %}
     <footer class="ps-footer ps-footer--2 ps-footer-technology">
         <div class="container">
             <div class="ps-footer__content">
@@ -290,7 +281,12 @@
             </div>
             <div class="ps-footer__copyright">
                 <p>&copy; 2021 Martfury. All Rights Reserved</p>
-                <p><span>We Using Safe Payment For:</span><a href="#"><img src="img/payment-method/1.jpg" alt="" /></a><a href="#"><img src="img/payment-method/2.jpg" alt="" /></a><a href="#"><img src="img/payment-method/3.jpg" alt="" /></a><a href="#"><img src="img/payment-method/4.jpg" alt="" /></a><a href="#"><img src="img/payment-method/5.jpg" alt="" /></a></p>
+                <p><span>We Using Safe Payment For:</span>
+                    <a href="#"><img src="{{ asset(_theme~'img/payment-method/1.jpg') }}" alt="" /></a>
+                    <a href="#"><img src="{{ asset(_theme~'img/payment-method/2.jpg') }}" alt="" /></a>
+                    <a href="#"><img src="{{ asset(_theme~'img/payment-method/3.jpg') }}" alt="" /></a>
+                    <a href="#"><img src="{{ asset(_theme~'img/payment-method/4.jpg') }}" alt="" /></a>
+                    <a href="#"><img src="{{ asset(_theme~'img/payment-method/5.jpg') }}" alt="" /></a></p>
             </div>
         </div>
     </footer>
@@ -305,7 +301,7 @@
         <div class="ps-cart--mobile">
             <div class="ps-cart__content">
                 <div class="ps-product--cart-mobile">
-                    <div class="ps-product__thumbnail"><a href="#"><img src="img/products/clothing/7.jpg" alt=""></a></div>
+                    <div class="ps-product__thumbnail"><a href="#"><img src="{{ asset(_theme~'img/products/clothing/7.jpg') }}" alt=""></a></div>
                     <div class="ps-product__content"><a class="ps-product__remove" href="#"><i class="icon-cross"></i></a><a href="product-default.html">MVMTH Classical Leather Watch In Black</a>
                         <p><strong>Sold by:</strong> YOUNG SHOP</p><small>1 x $59.99</small>
                     </div>
@@ -639,9 +635,9 @@
                 <div class="ps-product__header">
                     <div class="ps-product__thumbnail" data-vertical="false">
                         <div class="ps-product__images" data-arrow="true">
-                            <div class="item"><img src="img/products/detail/fullwidth/1.jpg" alt=""></div>
-                            <div class="item"><img src="img/products/detail/fullwidth/2.jpg" alt=""></div>
-                            <div class="item"><img src="img/products/detail/fullwidth/3.jpg" alt=""></div>
+                            <div class="item"><img src="{{ asset(_theme~'img/products/detail/fullwidth/1.jpg') }}" alt=""></div>
+                            <div class="item"><img src="{{ asset(_theme~'img/products/detail/fullwidth/2.jpg') }}" alt=""></div>
+                            <div class="item"><img src="{{ asset(_theme~'img/products/detail/fullwidth/3.jpg') }}" alt=""></div>
                         </div>
                     </div>
                     <div class="ps-product__info">
@@ -691,7 +687,7 @@
 <script src="{{ asset(_theme ~ 'plugins/jquery-bar-rating/dist/jquery.barrating.min.js') }}"></script>
 <script src="{{ asset(_theme ~ 'plugins/slick-animation.min.js') }}"></script>
 <script src="{{ asset(_theme ~ 'plugins/lightGallery-master/dist/js/lightgallery-all.min.js') }}"></script>
-<script src="{{ asset(_theme ~ 'plugins/sticky-sidebar/dist/sticky-sidebar.min.js') }}"></script>}
+{#<script src="{{ asset(_theme ~ 'plugins/sticky-sidebar/dist/sticky-sidebar.min.js') }}"></script>#}
 <script src="{{ asset(_theme ~ 'plugins/select2/dist/js/select2.full.min.js') }}"></script>
 <script src="{{ asset(_theme ~ 'plugins/gmap3.min.js') }}"></script>
 <!-- custom scripts-->
