@@ -20,6 +20,34 @@ class ProductoRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Producto::class);
     }
+    public function productosPopulares(int $numeroElementos ):array
+    {
+        return $this->createQueryBuilder('producto')
+            ->select('producto')
+            ->join('producto.categoria','categoria')
+            ->where('producto.precio>100')
+            //->andWhere('categoria.id =3')
+            ->setMaxResults($numeroElementos)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+    public function productosPopularesOptimizado(int $numeroElementos ):array
+    {
+        return $this->createQueryBuilder('producto')
+            ->select('producto.nombre as productoNombre')
+            ->addSelect('producto.id as productoId')
+            ->addSelect('producto.precio as productoPrecio')
+            ->addSelect('foto.secure as fotoNombre')
+            ->join('producto.categoria','categoria')
+            ->join('producto.foto','foto')
+            ->where('producto.precio>100')
+            ->setMaxResults($numeroElementos)
+            ->getQuery()
+            ->getResult()
+            ;
+
+    }
 
     public function save(Producto $entity, bool $flush = false): void
     {

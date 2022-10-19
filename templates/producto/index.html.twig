@@ -15,6 +15,8 @@
                 <th>Id</th>
                 <th>Foto</th>
                 <th>Nombre</th>
+                <th>Categoria</th>
+                <th>Marca</th>
                 <th>Precio</th>
                 <th>Stock</th>
                 <th>Descripcion</th>
@@ -34,6 +36,8 @@
                     {% endif %}
                 </td>
                 <td>{{ producto.nombre }}</td>
+                <td class="text-uppercase">{{ producto.categoria }}</td>
+                <td class="text-uppercase">{{ producto.marca }}</td>
                 <td>{{ producto.precio }}</td>
                 <td>{{ producto.stock }}</td>
                 <td>{{ producto.descripcion }}</td>

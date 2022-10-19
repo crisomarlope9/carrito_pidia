@@ -23,8 +23,8 @@ class ProductoType extends AbstractType
     {
         $builder
             ->add('nombre',TextType::class,[])
-            ->add('categoria',TextType::class,[])
-            ->add('marca',TextType::class,[])
+            ->add('categoria')
+            ->add('marca')
             ->add('precio',TextType::class,[])
             ->add('stock' ,NumberType::class,[])
             ->add('descripcion',TextareaType::class,[

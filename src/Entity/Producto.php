@@ -38,11 +38,12 @@ class Producto
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
+    private ?Marca $marca = null;
+
+    #[ORM\ManyToOne(targetEntity: Categoria::class,inversedBy:'productos')]
+    #[ORM\JoinColumn(nullable: false)]
     private ?Categoria $categoria = null;
 
-    #[ORM\ManyToOne]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?Marca $marca = null;
 
 
     public function __construct()
@@ -146,37 +147,33 @@ class Producto
         return $this;
     }
 
-    /**
-     * @return Categoria|null
-     */
-    public function getCategoria(): ?Categoria
-    {
-        return $this->categoria;
-    }
-
-    /**
-     * @param Categoria|null $categoria
-     */
-    public function setCategoria(?Categoria $categoria): void
-    {
-        $this->categoria = $categoria;
-    }
-
-    /**
-     * @return Marca|null
-     */
     public function getMarca(): ?Marca
     {
         return $this->marca;
     }
 
-    /**
-     * @param Marca|null $marca
-     */
-    public function setMarca(?Marca $marca): void
+    public function setMarca(?Marca $marca): self
     {
         $this->marca = $marca;
+
+        return $this;
     }
+
+    public function getCategoria(): ?Categoria
+    {
+        return $this->categoria;
+    }
+
+    public function setCategoria(?Categoria $categoria): self
+    {
+        $this->categoria = $categoria;
+
+        return $this;
+    }
+
+
+    
+
 
 
 
