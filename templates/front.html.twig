@@ -134,20 +134,13 @@
     <nav class="navigation">
         <div class="container">
             <ul class="menu menu--technology">
-                <li><a href="home-technology.html"><i class="icon-star"></i> Hot Deal</a>
-                </li>
-                <li><a href="home-technology.html"><i class="icon-smartphone"></i> Smartphone</a>
-                </li>
-                <li><a href="home-technology.html"><i class="ion-ipad"></i> Tablets</a>
-                </li>
-                <li><a href="home-technology.html"><i class="icon-laptop"></i> Laptop</a>
-                </li>
-                <li><a href="home-technology.html"><i class="icon-headphone"></i> Sounds</a>
-                </li>
-                <li><a href="home-technology.html"><i class="icon-mic2"></i> Technology Toys</a>
-                </li>
-                <li><a href="home-technology.html"><i class="icon-headphones"></i> Accesories</a>
-                </li>
+                {% for categoria in dataCategorias() %}
+                    <li>
+                        <a href="{{ path('app_front_category', {'id': categoria.categoriaId}) }}"><i class="icon-star"></i>{{ categoria.categoriaNombre }}</a>
+                    </li>
+
+                {% endfor %}
+
             </ul>
         </div>
     </nav>

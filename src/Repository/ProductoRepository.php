@@ -48,6 +48,26 @@ class ProductoRepository extends ServiceEntityRepository
             ;
 
     }
+    public function getProductoByCategoria(int $categoriaId):array
+    {
+        return $this->createQueryBuilder('producto')
+            ->select('producto.nombre as productoNombre')
+            ->addSelect('producto.id as productoId')
+            ->addSelect('producto.precio as productoPrecio')
+            ->addSelect('foto.secure as fotoNombre')
+            ->addSelect('marca.nombre as marcaNombre')
+
+            ->join('producto.categoria','categoria')
+            ->join('producto.marca','marca')
+            ->join('producto.foto','foto')
+            ->where('categoria.id= :categoriaId')
+            ->setParameter('categoriaId',$categoriaId)
+            ->getQuery()
+            ->getResult()
+            ;
+
+    }
+
 
     public function save(Producto $entity, bool $flush = false): void
     {
