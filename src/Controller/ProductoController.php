@@ -75,4 +75,18 @@ class ProductoController extends AbstractController
 
         return $this->redirectToRoute('app_producto_index', [], Response::HTTP_SEE_OTHER);
     }
+    #[Route('/validar-stock/ajax', name: 'app_producto_validar_stock', methods: ['POST'])]
+
+    public function validarStock(Request $request, ProductoRepository $productoRepository): Response
+    {
+        $productoId=(int)$request->request->get('producto-id');
+        $cantidadIngresada=(int)$request->request->get('cantidad');
+
+        $producto=$productoRepository->find($productoId);
+
+        $valido=$cantidadIngresada <= $producto->getStock();
+
+        return $this->json(['status'=>$valido,'data'=>$producto->getStock()]);
+
+    }
 }

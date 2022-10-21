@@ -25,29 +25,29 @@
                 <div class="ps-block__item">
                     <div class="ps-block__left"><i class="icon-rocket"></i></div>
                     <div class="ps-block__right">
-                        <h4>Free Delivery</h4>
-                        <p>For all oders over $99</p>
+                        <h4>Delivery gratis</h4>
+                        <p>Para las entregas mayores de S/1000.00/p>
                     </div>
                 </div>
                 <div class="ps-block__item">
                     <div class="ps-block__left"><i class="icon-sync"></i></div>
                     <div class="ps-block__right">
-                        <h4>90 Days Return</h4>
-                        <p>If goods have problems</p>
+                        <h4>90 Dias para devolución</h4>
+                        <p>Si es producto tiene problemas</p>
                     </div>
                 </div>
                 <div class="ps-block__item">
                     <div class="ps-block__left"><i class="icon-credit-card"></i></div>
                     <div class="ps-block__right">
-                        <h4>Secure Payment</h4>
-                        <p>100% secure payment</p>
+                        <h4>Pago seguro</h4>
+                        <p>Pago 100% seguro</p>
                     </div>
                 </div>
                 <div class="ps-block__item">
                     <div class="ps-block__left"><i class="icon-bubbles"></i></div>
                     <div class="ps-block__right">
-                        <h4>24/7 Support</h4>
-                        <p>Dedicated support</p>
+                        <h4>Soporte 24/7</h4>
+                        <p>Soporte especializado</p>
                     </div>
                 </div>
             </div>
@@ -58,11 +58,19 @@
             <div class="ps-section__header">
                 <h3>Populares</h3>
                 <ul class="ps-section__links">
-                    <li><a href="{{ asset(_theme~'shop-grid.html')}}">Iphone</a></li>
-                    <li><a href="{{ asset(_theme~'shop-grid.html')}}">IPad</a></li>
-                    <li><a href="{{ asset(_theme~'shop-grid.html')}}">Samsung</a></li>
-                    <li><a href="{{ asset(_theme~'shop-grid.html')}}">View All</a></li>
+
+                    {% for marca in dataMarcas() %}
+                        <li>
+                            <a href="{{ path('app_front_marca', {'id': marca.marcaId}) }}">{{ marca.marcaNombre }} </a>
+
+                        </li>
+                    {% endfor %}
+
                 </ul>
+
+
+                
+
             </div>
             <div class="ps-section__content">
                 <div class="ps-carousel--nav owl-slider" data-owl-auto="false" data-owl-loop="false" data-owl-speed="10000" data-owl-gap="30" data-owl-nav="true" data-owl-dots="true" data-owl-item="5" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4" data-owl-item-xl="5" data-owl-duration="1000" data-owl-mousedrag="on">

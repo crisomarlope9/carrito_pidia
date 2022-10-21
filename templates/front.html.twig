@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="{{ asset(_theme ~ 'plugins/select2/dist/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset(_theme ~ 'css/style.css') }}">
     <link rel="stylesheet" href="{{ asset(_theme ~ 'css/technology.css') }}">
+
 </head>
 
 <body>
@@ -60,7 +61,7 @@
     </div>
     <div class="header__content">
         <div class="container">
-            <div class="header__content-left"><a class="ps-logo" href="index.html"><img src="{{ asset(_theme~'img/logo-technology.png') }}" alt=""></a>
+            <div class="header__content-left"><a class="ps-logo" href='/'><img src="{{ asset(_theme~'img/logo-technology.png') }}" alt=""></a>
                 <div class="menu--product-categories">
                     <div class="menu__toggle"><i class="icon-menu"></i></div>
                     <div class="menu__content">
@@ -136,8 +137,7 @@
             <ul class="menu menu--technology">
                 {% for categoria in dataCategorias() %}
                     <li>
-                        <a href="{{ path('app_front_category', {'id': categoria.categoriaId}) }}"><i class="icon-star"></i>{{ categoria.categoriaNombre }}</a>
-                    </li>
+                        <a href="{{ path('app_front_category', {'id': categoria.id}) }}"><i class="icon-star"></i> {{ categoria.nombre }}</a> </li>
 
                 {% endfor %}
 
@@ -166,7 +166,7 @@
         </div>
     </div>
     <div class="navigation--mobile">
-        <div class="navigation__left"><a class="ps-logo" href="index.html"><img src="{{ asset(_theme~'img/logo-technology.png') }}" alt="" /></a></div>
+        <div class="navigation__left"><a class="ps-logo" href='/'><img src="{{ asset(_theme~'img/logo-technology.png') }}" alt="" /></a></div>
         <div class="navigation__right">
             <div class="header__actions">
                 <div class="ps-cart--mini"><a class="header__extra" href="#"><i class="icon-bag2"></i><span><i>0</i></span></a>
@@ -199,7 +199,7 @@
         </div>
     </div>
     <div class="ps-search--mobile">
-        <form class="ps-form--search-mobile" action="index.html" method="get">
+        <form class="ps-form--search-mobile" action="app_front_home" method="get">
             <div class="form-group--nest">
                 <input class="form-control" type="text" placeholder="Search something..." />
                 <button><i class="icon-magnifier"></i></button>
@@ -415,7 +415,7 @@
 </div>
 <div class="ps-panel--sidebar" id="search-sidebar">
     <div class="ps-panel__header">
-        <form class="ps-form--search-mobile" action="index.html" method="get">
+        <form class="ps-form--search-mobile" action="app_front_home" method="get">
             <div class="form-group--nest">
                 <input class="form-control" type="text" placeholder="Search something...">
                 <button><i class="icon-magnifier"></i></button>
@@ -682,9 +682,12 @@
 <script src="{{ asset(_theme ~ 'plugins/lightGallery-master/dist/js/lightgallery-all.min.js') }}"></script>
 {#<script src="{{ asset(_theme ~ 'plugins/sticky-sidebar/dist/sticky-sidebar.min.js') }}"></script>#}
 <script src="{{ asset(_theme ~ 'plugins/select2/dist/js/select2.full.min.js') }}"></script>
-<script src="{{ asset(_theme ~ 'plugins/gmap3.min.js') }}"></script>
+{# <script src="{{ asset(_theme ~ 'plugins/gmap3.min.js') }}"></script> #}
 <!-- custom scripts-->
 <script src="{{ asset(_theme ~ 'js/main.js') }}"></script>
-</body>
 
+</body>
+{% block stylesheets %}{% endblock %}
+{% block javascript %}
+{% endblock %}
 </html>
