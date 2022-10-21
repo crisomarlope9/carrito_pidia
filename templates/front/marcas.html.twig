@@ -7,9 +7,9 @@
                 <h4 class="widget-title">Categorias</h4>
                 <ul class="ps-list--categories">
                     {% for categoria in dataCategorias() %}
-                    <li class="menu-item-has-children"><a href="{{ path('app_front_category', {'id': categoria.categoriaId}) }}">{{ categoria.categoriaNombre }} </a>
+                        <li class="menu-item-has-children"><a href="{{ path('app_front_category', {'id': categoria.categoriaId}) }}">{{ categoria.categoriaNombre }} </a>
 
-                    </li>
+                        </li>
                     {% endfor %}
                 </ul>
             </aside>
@@ -18,7 +18,7 @@
                 <ul class="ps-list--categories">
                     {% for marca in dataMarcas() %}
                         <li>
-                        <a href="{{ path('app_front_marca', {'id': marca.marcaId}) }}">{{ marca.marcaNombre }} </a>
+                            <a href="{{ path('app_front_marca', {'id': marca.marcaId}) }}">{{ marca.marcaNombre }} </a>
 
                         </li>
                     {% endfor %}
@@ -40,7 +40,7 @@
         <div class="ps-layout__right">
             <div class="ps-shopping ps-tab-root">
                 <div class="ps-shopping__header">
-                    <p><strong> Productos de la categoria: </strong> {{ categoria.nombre }}</p>
+                    <p><strong> Productos de la marca: </strong> {{ marca.nombre }}</p>
                     <div class="ps-shopping__actions">
                         <select class="ps-select" data-placeholder="Sort Items">
                             <option>Sort by latest</option>
@@ -487,3 +487,4 @@
         </div>
     </div>
 {% endblock %}
+
