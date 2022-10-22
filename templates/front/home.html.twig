@@ -61,7 +61,7 @@
 
                     {% for marca in dataMarcas() %}
                         <li>
-                            <a href="{{ path('app_front_marca', {'id': marca.marcaId}) }}">{{ marca.marcaNombre }} </a>
+                            <a href="{{ path('app_front_marca', {'id': marca.id}) }}">{{ marca.nombre }} </a>
 
                         </li>
                     {% endfor %}

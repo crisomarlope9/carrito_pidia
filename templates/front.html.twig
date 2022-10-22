@@ -31,9 +31,10 @@
 </head>
 
 <body>
+
 <header class="header header--standard header--technology" data-sticky="true">
     <div class="header__top">
-        <div class="container">
+        {# <div class="container">
             <div class="header__left">
                 <p>SHOPPING CENTER <strong>for all orders over $100</strong></p>
             </div>
@@ -57,7 +58,8 @@
                     </li>
                 </ul>
             </div>
-        </div>
+        </div> #}
+
     </div>
     <div class="header__content">
         <div class="container">
@@ -66,7 +68,12 @@
                     <div class="menu__toggle"><i class="icon-menu"></i></div>
                     <div class="menu__content">
                         <ul class="menu--dropdown">
-                            <li><a href="#">New Arrivals</a>
+                            {% for categoria in dataCategorias() %}
+                                <li>
+                                    <a href="{{ path('app_front_category', {'id': categoria.id}) }}"> {{ categoria.nombre }}</a> </li>
+
+                            {% endfor %}
+                            {# <li><a href="#">New Arrivals</a>
                             </li>
                             <li><a href="#">Best Sellers</a>
                             </li>
@@ -82,6 +89,8 @@
                             </li>
                             <li><a href="#">Accessories</a>
                             </li>
+                            #}
+
                         </ul>
                     </div>
                 </div>
@@ -90,14 +99,22 @@
                 <form class="ps-form--quick-search" action="index.html" method="get">
                     <div class="form-group--icon"><i class="icon-chevron-down"></i>
                         <select class="form-control">
-                            <option value="1">All</option>
+                            {% for categoria in dataCategorias() %}
+                                <option>
+                                    <a href="{{ path('app_front_category', {'id': categoria.id}) }}">
+                                        </i> {{ categoria.nombre }}</a>
+                                </option>
+
+                            {% endfor %}
+                            {# <option value="1">All</option>
                             <option value="1">Smartphone</option>
                             <option value="1">Sounds</option>
-                            <option value="1">Technology toys</option>
+                            <option value="1">Technology toys</option> #}
+
                         </select>
                     </div>
-                    <input class="form-control" type="text" placeholder="I'm shopping for...">
-                    <button>Search</button>
+                    <input class="form-control" type="text" placeholder="Escribe lo que estas buscando...">
+                    <button>Buscar</button>
                 </form>
             </div>
             <div class="header__content-right">
@@ -126,7 +143,7 @@
                     </div>
                     <div class="ps-block--user-header">
                         <div class="ps-block__left"><i class="icon-user"></i></div>
-                        <div class="ps-block__right"><a href="#">Login</a><a href="#">Register</a></div>
+                        <div class="ps-block__right"><a href="#">Ingresar</a><a href="#">Registrarse</a></div>
                     </div>
                 </div>
             </div>
@@ -166,7 +183,7 @@
         </div>
     </div>
     <div class="navigation--mobile">
-        <div class="navigation__left"><a class="ps-logo" href='/'><img src="{{ asset(_theme~'img/logo-technology.png') }}" alt="" /></a></div>
+        <div class="navigation__left"><a class="ps-logo" href='/'><img src="/public/image/Logo.png" alt="" /></a></div>
         <div class="navigation__right">
             <div class="header__actions">
                 <div class="ps-cart--mini"><a class="header__extra" href="#"><i class="icon-bag2"></i><span><i>0</i></span></a>
@@ -219,35 +236,35 @@
                         <div class="row">
                             <div class="col-xl-4 col-lg-3 col-md-4 col-sm-6 col-6 ">
                                 <aside class="widget widget_footer">
-                                    <h4 class="widget-title">Quick links</h4>
+                                    <h4 class="widget-title">Enlaces rapidos</h4>
                                     <ul class="ps-list--link">
-                                        <li><a href="policy.html">Policy</a></li>
-                                        <li><a href="term-condition.html">Term & Condition</a></li>
-                                        <li><a href="shipping.html">Shipping</a></li>
-                                        <li><a href="return.html">Return</a></li>
-                                        <li><a href="faqs.html">FAQs</a></li>
+                                        <li><a href="#">Politicas</a></li>
+                                        <li><a href="#">Terminos y condiciones</a></li>
+                                        <li><a href="#">Envios</a></li>
+                                        <li><a href="#">Devolución</a></li>
+                                        <li><a href="#">FAQs</a></li>
                                     </ul>
                                 </aside>
                             </div>
                             <div class="col-xl-4 col-lg-3 col-md-4 col-sm-6 col-6 ">
                                 <aside class="widget widget_footer">
-                                    <h4 class="widget-title">Company</h4>
+                                    <h4 class="widget-title">Sobre nosotros</h4>
                                     <ul class="ps-list--link">
-                                        <li><a href="about-us.html">About Us</a></li>
-                                        <li><a href="affilate.html">Affilate</a></li>
-                                        <li><a href="shipping.html">Career</a></li>
-                                        <li><a href="contact.html">Contact</a></li>
+                                        <li><a href="#">Nosotros</a></li>
+                                        <li><a href="#">Afiliate</a></li>
+                                        <li><a href="#">Contactenos</a></li>
+                                        <li><a href="#">Libro de reclamaciones</a></li>
                                     </ul>
                                 </aside>
                             </div>
                             <div class="col-xl-4 col-lg-3 col-md-4 col-sm-6 col-12 ">
                                 <aside class="widget widget_footer">
-                                    <h4 class="widget-title">Bussiness</h4>
+                                    <h4 class="widget-title">Negocio</h4>
                                     <ul class="ps-list--link">
-                                        <li><a href="our-press.html">Our Press</a></li>
-                                        <li><a href="checkout.html">Checkout</a></li>
-                                        <li><a href="my-account.html">My account</a></li>
-                                        <li><a href="shop.html">Shop</a></li>
+                                        <li><a href="#">Nuestra empresa</a></li>
+                                        <li><a href="#">Caja</a></li>
+                                        <li><a href="#">Mi cuenta</a></li>
+                                        <li><a href="#">Tienda</a></li>
                                     </ul>
                                 </aside>
                             </div>
@@ -255,11 +272,11 @@
                     </div>
                     <div class="col-xl-4 col-md-6">
                         <aside class="widget widget_newletters">
-                            <h4 class="widget-title">Newsletter</h4>
+                            <h4 class="widget-title">Boletin</h4>
                             <form class="ps-form--newletter" action="#" method="get">
                                 <div class="form-group--nest">
-                                    <input class="form-control" type="text" placeholder="Email Address" />
-                                    <button class="ps-btn">Subscribe</button>
+                                    <input class="form-control" type="text" placeholder="Correo electronico" />
+                                    <button class="ps-btn">Escribenos</button>
                                 </div>
                                 <ul class="ps-list--social">
                                     <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
@@ -273,8 +290,8 @@
                 </div>
             </div>
             <div class="ps-footer__copyright">
-                <p>&copy; 2021 Martfury. All Rights Reserved</p>
-                <p><span>We Using Safe Payment For:</span>
+                <p>&copy; 2021 Martfury.  Todos los derechos reservados</p>
+                <p><span>Metodos de Pago Disponible: </span>
                     <a href="#"><img src="{{ asset(_theme~'img/payment-method/1.jpg') }}" alt="" /></a>
                     <a href="#"><img src="{{ asset(_theme~'img/payment-method/2.jpg') }}" alt="" /></a>
                     <a href="#"><img src="{{ asset(_theme~'img/payment-method/3.jpg') }}" alt="" /></a>
@@ -312,6 +329,7 @@
     <div class="ps-panel__header">
         <h3>Categories</h3>
     </div>
+
     <div class="ps-panel__content">
         <div class="menu--product-categories">
             <div class="menu__toggle"><i class="icon-menu"></i><span> Shop by Department</span></div>
